@@ -1,0 +1,22 @@
+# redis-server - Redis Datastore Server
+#
+# Redis is a key value in memory persistent datastore
+
+start on (local-filesystems and runlevel [2345])
+stop on runlevel [016]
+respawn
+expect fork
+limit nofile 20000 65000
+<% if has_variable?("socket") then %>
+pre-stop script
+    /usr/bin/redis -s <%= socket %> SHUTDOWN
+end script
+<% end %>
+<% if !has_variable?("socket") && has_variable?("port") then %>
+pre-stop script
+    /usr/bin/redis -p <%= port %> SHUTDOWN
+end script
+<% end %>
+# with older upstart versions, this is the recomended way to change the user:group
+exec start-stop-daemon --start --chuid redis:redis --pidfile <%= pidfile %> --umask 007 --exec /usr/bin/redis-server -- <%= conffile %>
+
