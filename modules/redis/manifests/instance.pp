@@ -31,9 +31,9 @@ define redis::instance (
 	service { $procname:
 		enable    => true,
 		ensure    => running,
-		subscribe => Package['redis'],
 	}
 
-	File[$conffile] -> Service[$procname]
+	File[$conffile]         ~> Service[$procname]
+	Package['redis-server'] ~> Service[$procname]
 
 }

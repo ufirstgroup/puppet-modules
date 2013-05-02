@@ -1,8 +1,5 @@
 class redis::php {
 
-	include apt
-	apt::ppa { 'ppa:ufirst/php': }
-
 	package {
 		'php5-igbinary':
 			ensure => latest,

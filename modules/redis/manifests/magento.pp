@@ -3,6 +3,7 @@ class redis::magento (
 	$maxmemory_fpc,
 	$maxmemory_session,
 ) {
+
 	include redis::php
 
 	$socket_cache   = "/var/run/redis/redis-magento-cache.sock"

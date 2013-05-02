@@ -16,6 +16,14 @@ class redis::package {
 			owner  => redis,
 			group  => redis,
 			mode   => 644;
+
+		# don't start default instance (installed by package)
+		'/etc/init/redis-server.conf':
+			ensure  => absent,
+			require => Package['redis-server'];
+		'/etc/init.d/redis-server':
+			ensure  => absent,
+			require => Package['redis-server'];
 	}
 
 }
