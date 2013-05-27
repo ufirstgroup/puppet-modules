@@ -5,12 +5,15 @@ class redis::package {
 		alias  => 'redis',
 	}
 
+	File {
+			require => Package['redis-server']
+	}
 	file {
 		'/var/run/redis':
-			ensure => directory,
-			owner  => redis,
-			group  => redis,
-			mode   => 644;
+			ensure  => directory,
+			owner   => redis,
+			group   => redis,
+			mode    => 644;
 		'/var/lib/redis/':
 			ensure => directory,
 			owner  => redis,
@@ -19,11 +22,9 @@ class redis::package {
 
 		# don't start default instance (installed by package)
 		'/etc/init/redis-server.conf':
-			ensure  => absent,
-			require => Package['redis-server'];
+			ensure  => absent;
 		'/etc/init.d/redis-server':
-			ensure  => absent,
-			require => Package['redis-server'];
+			ensure  => absent;
 	}
 
 }
