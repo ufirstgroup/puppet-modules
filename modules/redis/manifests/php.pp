@@ -1,9 +1,6 @@
 class redis::php {
 
 	package {
-		'php5-igbinary':
-			ensure => latest,
-			notify => Service["php5-fpm"];
 		'php5-redis':
 			ensure => latest,
 			require => Package['php5-igbinary'],
