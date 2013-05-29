@@ -1,8 +1,8 @@
 define redis::instance (
 	$maxmemory,
-	$bind = null,
-	$port = null,
-	$socket = null,
+	$bind = '',
+	$port = '',
+	$socket = '',
 	$save = false,
 ) {
 
