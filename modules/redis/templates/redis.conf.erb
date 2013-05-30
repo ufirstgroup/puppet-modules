@@ -18,12 +18,12 @@ daemonize yes
 
 # When running daemonized, Redis writes a pid file in /var/run/redis.pid by
 # default. You can specify a custom pid file location here.
-pidfile <%= pidfile %>
+pidfile <%= @pidfile %>
 
 # Accept connections on the specified port, default is 6379.
 # If port 0 is specified Redis will not listen on a TCP socket.
-<% if has_variable?("port") and port != '' then %>
-port <%= port %>
+<% if has_variable?("port") and @port != '' then %>
+port <%= @port %>
 <% else %>
 port 0
 <% end %>
@@ -31,16 +31,16 @@ port 0
 # If you want you can bind a single interface, if the bind option is not
 # specified all the interfaces will listen for incoming connections.
 #
-<% if has_variable?("bind") and bind != '' then %>
-bind <%= bind %>
+<% if has_variable?("bind") and @bind != '' then %>
+bind <%= @bind %>
 <% end %>
 
 # Specify the path for the unix socket that will be used to listen for
 # incoming connections. There is no default, so Redis will not listen
 # on a unix socket when not specified.
 #
-<% if has_variable?("socket") and socket != '' then %>
-unixsocket <%= socket %>
+<% if has_variable?("socket") and @socket != '' then %>
+unixsocket <%= @socket %>
 unixsocketperm 666
 <% end %>
 
@@ -58,7 +58,7 @@ loglevel notice
 # Specify the log file name. Also 'stdout' can be used to force
 # Redis to log on the standard output. Note that if you use standard
 # output for logging but daemonize, logs will be sent to /dev/null
-logfile /var/log/redis/<%= procname %>.log
+logfile /var/log/redis/<%= @procname %>.log
 
 # To enable logging to the system logger, just set 'syslog-enabled' to yes,
 # and optionally update the other syslog parameters to suit your needs.
@@ -138,7 +138,7 @@ rdbcompression yes
 rdbchecksum yes
 
 # The filename where to dump the DB
-dbfilename dump-<%= procname %>.rdb
+dbfilename dump-<%= @procname %>.rdb
 
 # The working directory.
 #
@@ -278,7 +278,7 @@ slave-read-only yes
 # output buffers (but this is not needed if the policy is 'noeviction').
 #
 <% if has_variable?("maxmemory") then %>
-maxmemory <%= maxmemory %>
+maxmemory <%= @maxmemory %>
 <% end %>
 
 # MAXMEMORY POLICY: how Redis will select what to remove when maxmemory
@@ -335,7 +335,7 @@ maxmemory <%= maxmemory %>
 appendonly no
 
 # The name of the append only file (default: "appendonly.aof")
-appendfilename appendonly-<%= procname %>.aof
+appendfilename appendonly-<%= @procname %>.aof
 
 # The fsync() call tells the Operating System to actually write data on disk
 # instead to wait for more data in the output buffer. Some OS will really flush

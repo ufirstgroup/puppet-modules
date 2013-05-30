@@ -11,16 +11,16 @@ pre-start script
     mkdir -p /var/run/redis
     chown redis:redis /var/run/redis
 end script
-<% if has_variable?("socket") then %>
+<% if has_variable?("socket") and @socket != '' then %>
 pre-stop script
-    /usr/bin/redis -s <%= socket %> SHUTDOWN
+    /usr/bin/redis -s <%= @socket %> SHUTDOWN
 end script
 <% end %>
-<% if !has_variable?("socket") && has_variable?("port") then %>
+<% if has_variable?("port") and @port != '' then %>
 pre-stop script
-    /usr/bin/redis -p <%= port %> SHUTDOWN
+    /usr/bin/redis -p <%= @port %> SHUTDOWN
 end script
 <% end %>
 # with older upstart versions, this is the recomended way to change the user:group
-exec start-stop-daemon --start --chuid redis:redis --pidfile <%= pidfile %> --umask 007 --exec /usr/bin/redis-server -- <%= conffile %>
+exec start-stop-daemon --start --chuid redis:redis --pidfile <%= @pidfile %> --umask 007 --exec /usr/bin/redis-server -- <%= @conffile %>
 
