@@ -1,22 +1,9 @@
-class redis::php {
-
-	package {
-		'php5-redis':
-			ensure => latest,
-			require => Package['php5-igbinary'],
-			notify => Service["php5-fpm"];
+class redis::php (
+	$serializer = 'none'
+){
+	php::module { 'redis':
+		content => "$module_name/php/",
+		notify => Class["php::fpm::service"],
+		require => [Class["redis::apt"], Package['php5-igbinary']]
 	}
-
-	File {
-		owner   => root,
-		group   => root,
-		mode    => '0644',
-	}
-
-	file {
-		'/etc/php5/conf.d/redis.ini':
-			content => "extension=redis.so\nredis.serializer=none",
-			notify => Service["php5-fpm"]
-	}
-
 }

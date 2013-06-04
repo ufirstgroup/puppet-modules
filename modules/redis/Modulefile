@@ -1,0 +1,10 @@
+name    'ufirst-redis'
+version '1.0.0'
+source 'UNKNOWN'
+author 'ufirst'
+license 'Apache License, Version 2.0'
+summary 'UNKNOWN'
+description 'Manage redis with puppet'
+project_page 'https://github.com/ufirstgroup/puppet-modules/'
+
+dependency 'saz/php', '>= 1.1.0'
