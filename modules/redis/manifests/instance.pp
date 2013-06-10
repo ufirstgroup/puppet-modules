@@ -33,7 +33,6 @@ define redis::instance (
 		ensure    => running,
 	}
 
-	File[$conffile]         ~> Service[$procname]
-	Package['redis-server'] ~> Service[$procname]
+	Package['redis-server'] ~> File[$conffile] ~> Service[$procname]
 
 }
