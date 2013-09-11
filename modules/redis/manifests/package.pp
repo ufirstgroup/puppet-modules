@@ -2,7 +2,6 @@ class redis::package {
 
 	package { 'redis-server':
 		ensure => latest,
-		alias  => 'redis',
 	}
 
 	File {
