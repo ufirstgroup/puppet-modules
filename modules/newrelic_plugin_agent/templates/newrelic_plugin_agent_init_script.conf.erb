@@ -1,0 +1,16 @@
+# NewRelic Plugin Agent
+
+start on (local-filesystems and runlevel [2345])
+stop on runlevel [016]
+respawn
+
+limit nofile 20000 65000
+pre-start script
+    mkdir -p /var/run/newrelic
+    mkdir -p /var/log/newrelic
+    chown <%= @user %>:<%= @group %> /var/run/newrelic
+    chown <%= @user %>:<%= @group %> /var/log/newrelic
+end script
+# with older upstart versions, this is the recomended way to change the user:group
+exec start-stop-daemon --start --chuid <%= @user %>:<%= @group %> --pidfile <%= @pidfile %> --umask 007 --exec /usr/local/bin/newrelic_plugin_agent -- -c <%= @conffile %> -f
+
