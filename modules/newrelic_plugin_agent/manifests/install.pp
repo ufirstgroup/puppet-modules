@@ -22,6 +22,7 @@ class newrelic_plugin_agent::install (
 	class { '::python':
 		version		=> 'system',
 		pip			=> true,
+        dev         => true,
 		virtualenv	=> false,
 	}
 

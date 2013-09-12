@@ -1,6 +1,7 @@
 class newrelic_plugin_agent (
 	$newrelic_license_key = undef,
-	$configuration_source = undef
+	$configuration_source = undef,
+	$newrelic_env_name = '',
 ) {
 	if ! $newrelic_license_key {
 		fail('athleticum::newrelic: No NewRelic License Key')
