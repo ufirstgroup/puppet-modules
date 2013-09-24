@@ -1,0 +1,13 @@
+name    'ufirst-locales'
+version '1.0.0'
+
+project_page 'https://github.com/ufirstgroup/puppet-modules'
+source 'UNKNOWN'
+author 'ufirst'
+license 'MIT License'
+summary 'Puppet Module: locales'
+description 'Module for configuring locales.
+
+cloned from attachmentgenie/locales'
+
+dependency 'puppetlabs/stdlib', '>=2.2.1'
