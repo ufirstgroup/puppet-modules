@@ -7,8 +7,9 @@ class locales($default_value='en_US.UTF-8', $available=['en_US.UTF-8 UTF-8']) {
     content => inline_template('<%= @available.join("\n") + "\n" %>'),
   }
 
+  # see https://bugs.launchpad.net/ubuntu/+source/console-setup/+bug/829314
   file { '/etc/default/locale':
-    content => inline_template('LANG=<%= @default_value + "\n" %>'),
+    content => inline_template('LANG=<%= @default_value + "\n" %>LC_CTYPE=<%= @default_value + "\n" %>'),
   }
 
   exec { '/usr/sbin/locale-gen':
