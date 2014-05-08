@@ -13,7 +13,8 @@ class redis::magento (
 	redis::instance {
 		'magento-cache':
 			maxmemory => $maxmemory_cache,
-			socket    => $socket_cache;
+			socket    => $socket_cache,
+			save      => true;
 		'magento-fpc':
 			maxmemory => $maxmemory_fpc,
 			socket    => $socket_fpc;

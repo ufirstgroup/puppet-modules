@@ -102,7 +102,7 @@ databases 16
 # save 60 10000
 
 <% if @save then %>
-save 60 1
+save 600 1
 <% end %>
 
 
@@ -332,7 +332,11 @@ maxmemory <%= @maxmemory %>
 #
 # Please check http://redis.io/topics/persistence for more information.
 
+<% if @save then %>
+appendonly yes
+<% else %>
 appendonly no
+<% end %>
 
 # The name of the append only file (default: "appendonly.aof")
 appendfilename appendonly-<%= @procname %>.aof
