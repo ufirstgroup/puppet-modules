@@ -21,7 +21,7 @@ Puppet::Type.type(:mysql_common_schema).provide(:mysql) do
   end
 
   def create
-    mysql(mysql_args("-e", "SOURCE percona_common_schema/files/common_schema-#{@resource[:version]}.sql"))
+    mysql(mysql_args("-e", "SOURCE /tmp/common_schema-#{@resource[:version]}.sql"))
     mysql_flush
   end
 
