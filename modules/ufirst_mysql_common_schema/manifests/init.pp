@@ -4,7 +4,7 @@ class ufirst_mysql_common_schema (
 
     file { "/tmp/common_schema-${version}.sql":
         ensure => 'file',
-        source => "puppet:///modules/mysql_common_schema/common_schema-${version}.sql",
+        source => "puppet:///modules/ufirst_mysql_common_schema/common_schema-${version}.sql",
     }
 
     mysql_common_schema { "${version}":
