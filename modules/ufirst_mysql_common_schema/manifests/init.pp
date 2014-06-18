@@ -1,4 +1,4 @@
-class mysql_common_schema (
+class ufirst_mysql_common_schema (
         $version = "2.2",
     ) {
 
