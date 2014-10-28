@@ -1,6 +1,5 @@
 class redis::apt {
 
-	apt::ppa { 'ppa:rwky/redis': }
-	apt::ppa { 'ppa:ufirst/php': }
+	apt::ppa { 'ppa:ufirst/php5-oldsable': }
 
 }
